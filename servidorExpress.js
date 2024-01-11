@@ -3,6 +3,8 @@ const jwt = require("jsonwebtoken");
 const app = express();
 const port = 8000;
 
+//Implementando el JWT en mi proyecto
+
 let listaDeTareas = [
   {
     id: "1",
@@ -18,7 +20,7 @@ let listaDeTareas = [
 
 app.use(express.json());
 
-// Middleware global de verificación de token
+
 app.use((req, res, next) => {
   const beareHeader = req.headers["authorization"];
 
@@ -65,7 +67,7 @@ app.post("/api/post", (req, res) => {
   })
 });
 
-// Aplicar el middleware de verificación del token a todas las rutas siguientes
+
 app.use((req, res, next) => {
   jwt.verify(req.token, "secreto", (error, authData) => {
     if (error) {
